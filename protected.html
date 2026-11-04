@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Access blocked – Blazewave</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Protected route. Use the Blazewave script loader.">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Blazewave">
+  <meta property="og:title" content="Blazewave">
+  <meta property="og:description" content="Protected route. Use the Blazewave script loader.">
+  <meta property="og:image" content="https://blazewave.pages.dev/logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://blazewave.pages.dev/logo.png">
+  <style>
+    :root {
+      --ln: #262626;
+      --mu: #888888;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: #000000;
+      font-size: 14px;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #f1f1f1;
+      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: linear-gradient(90deg, rgba(255, 255, 255, .028) 1px, transparent 1px) 0 0/30px 30px, linear-gradient(rgba(255, 255, 255, .028) 1px, transparent 1px) 0 0/30px 30px, radial-gradient(520px 380px at 50% 40%, rgba(255, 255, 255, .06), transparent 70%), #000000;
+    }
+
+    .w {
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 0 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hd {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 6px 0;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+
+    .hd img {
+      width: 34px;
+      height: 34px;
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 34px 0 10px;
+    }
+
+    .card {
+      position: relative;
+      padding: 34px 22px 24px;
+      text-align: center;
+      border: 1px solid var(--ln);
+      border-radius: 26px;
+      background: linear-gradient(#000000, #000000);
+      box-shadow: 0 30px 60px -34px #000;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 22%;
+      right: 22%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .5), transparent);
+    }
+
+    .lk {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #0a0a0a;
+      border: 1px solid #262626;
+      color: #ededed;
+    }
+
+
+    .lk svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+      padding: 8px 18px;
+      border: 1px solid #363636;
+      border-radius: 999px;
+      background: #000000;
+      font: 600 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .22em;
+      color: #d5d5d5;
+    }
+
+
+    h1 {
+      margin-top: 20px;
+      font-size: 25px;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      font-weight: 700;
+    }
+
+    .p {
+      margin: 14px auto 0;
+      max-width: 20em;
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--mu);
+    }
+
+    .nt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+      padding: 16px 18px;
+      border: 1px solid #1a1a1a;
+      border-radius: 16px;
+      background: #000000;
+      text-align: left;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #ababab;
+    }
+
+    .nt svg {
+      flex: none;
+      width: 22px;
+      height: 22px;
+      color: #e2e2e2;
+    }
+
+    .nt b {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .sep {
+      height: 1px;
+      margin: 26px 0 0;
+      background: #1a1a1a;
+    }
+
+    h2 {
+      margin-top: 24px;
+      text-align: left;
+      font-size: 17px;
+      letter-spacing: -.02em;
+    }
+
+    .s {
+      margin-top: 4px;
+      text-align: left;
+      font-size: 14px;
+      color: var(--mu);
+    }
+
+    .code {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 15px 16px;
+      border: 1px solid #262626;
+      border-radius: 14px;
+      background: #000000;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: border-color .25s;
+    }
+
+    .code:hover {
+      border-color: #4d4d4d;
+    }
+
+    .code.ok {
+      border-color: #919191;
+    }
+
+    .code pre {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+      font: 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #7d7d7d;
+    }
+
+    .code pre b {
+      color: #f1f1f1;
+      font-weight: 700;
+    }
+
+    .code pre u {
+      text-decoration: none;
+      color: #9d9d9d;
+    }
+
+    .code svg {
+      flex: none;
+      width: 20px;
+      height: 20px;
+      color: #9d9d9d;
+      transition: color .25s;
+    }
+
+    .code.ok svg {
+      color: #fff;
+    }
+
+    .cp {
+      margin-top: 20px;
+      padding: 0 0 4px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #4d4d4d;
+    }
+
+    footer {
+      padding: 14px 0 26px;
+    }
+
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+    }
+
+
+
+
+
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    body {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="w">
+    <div class="hd">
+      <img src="/logo.png" alt="">
+      Blazewave
+    </div>
+    <main>
+      <div class="card">
+        <div class="lk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4.5" y="10.5" width="15" height="10" rx="2.6"/>
+            <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>
+          </svg>
+        </div>
+        <div class="chip">ACCESS BLOCKED</div>
+        <h1>You can't view this script</h1>
+        <p class="p">You are blocked from seeing the source of this script. It is not available to view in a browser.</p>
+        <div class="nt">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9.5"/>
+            <path d="M12 11v6M12 7.5v.01"/>
+          </svg>
+          <span>This script will only execute in a <b>Roblox environment</b>.</span>
+        </div>
+        <div class="sep"></div>
+        <h2>Looking for the loader?</h2>
+        <div class="s" id="s">Paste this into your executor.</div>
+        <div class="code" id="c">
+          <pre><b>loadstring</b><u>(</u>game<u>:</u><b>HttpGet</b><u>(</u>"https://blazewave.pages.dev/mainloader"<u>))()</u></pre>
+          <svg id="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.6"/>
+            <path d="M5 15.5V6.8A2.8 2.8 0 0 1 7.8 4h8.7"/>
+          </svg>
+        </div>
+      </div>
+      <div class="cp">&copy; 2026 Blazewave. All rights reserved.</div>
+    </main>
+  </div>
+
+  <script>
+    var tx = 'loadstring(game:HttpGet("https://blazewave.pages.dev/mainloader"))()';
+    var cb = document.getElementById("c");
+    var ic = document.getElementById("i");
+    var st = document.getElementById("s");
+    var ci = ic.innerHTML;
+    var t0 = st.textContent;
+
+    function done() {
+      cb.className = "code ok";
+      ic.innerHTML = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+      st.textContent = "Copied to clipboard.";
+      setTimeout(function () {
+        cb.className = "code";
+        ic.innerHTML = ci;
+        st.textContent = t0;
+      }, 1800);
+    }
+
+    function fb() {
+      var a = document.createElement("textarea");
+      a.value = tx;
+      a.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(a);
+      a.select();
+      try {
+        document.execCommand("copy");
+        done();
+      } catch (e) {}
+      document.body.removeChild(a);
+    }
+
+    cb.onclick = function () {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(tx).then(done, fb);
+      } else {
+        fb();
+      }
+    };
+  </script>
+  <script>
+    (function () {
+      var E = 'loadstring(game:HttpGet("https://blazewave.pages.dev/mainloader"))()';
+      var dead = false;
+
+      function bad() {
+        if (dead) return;
+        dead = true;
+        try {
+          document.documentElement.innerHTML = "";
+        } catch (e) {}
+        location.replace("/protected");
+      }
+
+      if (window.top !== window.self) {
+        bad();
+      }
+
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("selectstart", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        var k = (e.key || "").toLowerCase();
+        if (
+          e.key === "F12" ||
+          (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) ||
+          (e.ctrlKey && (k === "u" || k === "s" || k === "p")) ||
+          (e.metaKey && e.altKey && (k === "i" || k === "u" || k === "j"))
+        ) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, true);
+
+      var fine = window.matchMedia && matchMedia("(pointer:fine)").matches && screen.width >= 900;
+
+      setInterval(function () {
+        var a = performance.now();
+        debugger;
+        if (performance.now() - a > 150) {
+          bad();
+        }
+        if (fine && (outerWidth - innerWidth > 200 || outerHeight - innerHeight > 260)) {
+          bad();
+        }
+      }, 1500);
+
+      try {
+        var im = new Image();
+        Object.defineProperty(im, "id", {
+          get: function () {
+            bad();
+            return "";
+          }
+        });
+        console.debug(im);
+      } catch (e) {}
+
+      new MutationObserver(function (ms) {
+        ms.forEach(function (m) {
+          m.addedNodes.forEach(function (n) {
+            var t = n.tagName;
+            if (t === "IFRAME" || t === "OBJECT" || t === "EMBED" || (t === "SCRIPT" && !/cloudflareinsights\.com/.test(n.src || ""))) {
+              try {
+                n.remove();
+              } catch (e) {}
+              bad();
+            }
+          });
+        });
+      }).observe(document.documentElement, { childList: true, subtree: true });
+
+      setInterval(function () {
+        var m = document.querySelector(".mono") || document.querySelector(".code pre");
+        var b = document.getElementById("g") || document.querySelector(".code");
+        if (!m || !b || m.textContent.trim() !== E || (typeof window.tx === "string" && window.tx !== E) || typeof b.onclick !== "function") {
+          bad();
+        }
+      }, 2000);
+    })();
+  </script>
+</body>
+</html>

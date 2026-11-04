@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blazewave</title>
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Blazewave protected script loader.">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Blazewave">
+  <meta property="og:title" content="Blazewave">
+  <meta property="og:description" content="Blazewave protected script loader.">
+  <meta property="og:image" content="https://blazewave.pages.dev/logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://blazewave.pages.dev/logo.png">
+  <style>
+    :root {
+      --ln: #2c2c2c;
+      --mu: #8d8d8d;
+      --wh: #ffffff;
+      --g1: #ffffff;
+      --g2: #bbbbbb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: #000000;
+      font-size: 14px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: clip;
+      padding-bottom: 130px;
+      color: #f1f1f1;
+      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(520px 420px at 50% 260px, rgba(255, 255, 255, .1), transparent 70%), linear-gradient(#000000, #000000);
+    }
+
+    .w {
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hd {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--ln);
+      background: rgba(0, 0, 0, .9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hd .w {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .br {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      white-space: nowrap;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .br img {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+
+    .wbtn {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border: 1px solid var(--wh);
+      border-radius: 12px;
+      background: var(--wh);
+      color: #000000;
+      font: 600 14.5px Inter, Roboto, sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .15s, background .2s;
+    }
+
+    .wbtn:active {
+      transform: scale(.97);
+    }
+
+    .wbtn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .obtn {
+      background: transparent;
+      border-color: #3d3d3d;
+      color: #f1f1f1;
+    }
+
+    .obtn:hover {
+      border-color: #8d8d8d;
+    }
+
+    section {
+      scroll-margin-top: 70px;
+    }
+
+    .art {
+      position: relative;
+      width: 246px;
+      height: 246px;
+      margin: 24px auto 0;
+      display: grid;
+      place-items: center;
+    }
+
+
+    .art .lg {
+      position: relative;
+      width: 176px;
+      height: 176px;
+      display: block;
+    }
+
+
+
+
+
+
+
+    .ttl {
+      display: block;
+      margin-top: 18px;
+      overflow: visible;
+      animation: rise 1s .12s both;
+    }
+
+    .ttl text,
+    .wd text,
+    .num text {
+      font-family: Inter, Roboto, "Arial Black", system-ui, sans-serif;
+      font-weight: 900;
+      fill: url(#sg);
+    }
+
+    .by {
+      margin-top: 6px;
+      font-size: 17px;
+      color: var(--mu);
+      animation: rise 1s .2s both;
+    }
+
+    .ds {
+      margin-top: 16px;
+      font-size: 16.5px;
+      line-height: 1.65;
+      color: #7d7d7d;
+      animation: rise 1s .28s both;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+      animation: rise 1s .36s both;
+    }
+
+    .row .wbtn {
+      flex: 1;
+      padding: 16px 10px;
+      font-size: 15.5px;
+    }
+
+    .row .wbtn.pri {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .row .wbtn.pri::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .8), transparent);
+      transform: skewX(-20deg);
+      animation: sw 3.6s ease-in-out infinite;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 46px;
+      border: 1px solid var(--ln);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .stats div {
+      padding: 20px 18px;
+      background: rgba(255, 255, 255, .015);
+    }
+
+    .stats div:nth-child(odd) {
+      border-right: 1px solid var(--ln);
+    }
+
+    .stats div:nth-child(-n+2) {
+      border-bottom: 1px solid var(--ln);
+    }
+
+    .stats span {
+      display: block;
+      font-size: 14.5px;
+      color: var(--mu);
+    }
+
+    .num {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .sec {
+      padding-top: 70px;
+    }
+
+    .eb {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .3em;
+      color: #6d6d6d;
+    }
+
+    .wd {
+      display: block;
+      margin-top: 12px;
+    }
+
+    .hw {
+      margin-top: 22px;
+      border-radius: 22px;
+      background: #0a0a0a;
+      border: 1px solid #262626;
+      overflow: hidden;
+    }
+
+    .hw div {
+      padding: 22px 22px 24px;
+    }
+
+    .hw div+div {
+      border-top: 1px solid #262626;
+    }
+
+    .hw em {
+      display: block;
+      font-style: normal;
+    }
+
+    .hw b {
+      display: block;
+      margin-top: 16px;
+      font-size: 19px;
+      letter-spacing: -.02em;
+    }
+
+    .hw small {
+      display: block;
+      margin-top: 8px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--mu);
+    }
+
+    .sh3 {
+      margin-top: 44px;
+      font-size: 19px;
+      letter-spacing: -.025em;
+    }
+
+    .sh3+p {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--mu);
+    }
+
+    .sl {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin: 16px -20px 0;
+      padding: 4px 20px 14px;
+    }
+
+    .sl::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sl figure {
+      flex: none;
+      width: 86%;
+      scroll-snap-align: center;
+      border: 1px solid #3d3d3d;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000000;
+      box-shadow: 0 24px 44px -24px #000;
+    }
+
+    .sl img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: zoom-in;
+    }
+
+    .sl figcaption {
+      padding: 9px 12px;
+      border-top: 1px solid #2c2c2c;
+      background: #000000;
+      font-size: 12px;
+      color: var(--mu);
+    }
+
+    .mono {
+      margin-top: 6px;
+      padding: 14px 16px;
+      border: 1px solid var(--ln);
+      border-radius: 14px;
+      background: #000000;
+      font: 12px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #8d8d8d;
+      word-break: break-all;
+    }
+
+    .lbl {
+      margin-top: 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9d9d9d;
+    }
+
+    .cl {
+      padding-top: 78px;
+      border-top: 1px solid #262626;
+      margin-top: 70px;
+    }
+
+    .cl p {
+      margin-top: 20px;
+      font-size: 17px;
+      line-height: 1.65;
+      color: #7d7d7d;
+    }
+
+    .dcard {
+      margin-top: 22px;
+      padding: 28px 22px;
+      text-align: center;
+      border: 1px solid var(--ln);
+      border-radius: 24px;
+      background: linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015));
+    }
+
+    .dcard .ic {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #111111;
+      border: 1px solid #323232;
+      color: #f1f1f1;
+    }
+
+    .dcard .ic svg {
+      width: 34px;
+      height: 34px;
+    }
+
+    .dcard h3 {
+      margin-top: 18px;
+      font-size: 21px;
+      letter-spacing: -.03em;
+    }
+
+    .dcard p {
+      margin: 8px auto 0;
+      max-width: 20em;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--mu);
+    }
+
+    .dcard .wbtn {
+      margin-top: 22px;
+      width: 100%;
+      padding: 16px;
+      font-size: 15.5px;
+    }
+
+    footer {
+      margin-top: 70px;
+      padding: 30px 0 24px;
+      border-top: 1px solid #262626;
+    }
+
+    .fb {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .fb img {
+      width: 42px;
+      height: 42px;
+      display: block;
+    }
+
+    .fb b {
+      display: block;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .fb small {
+      display: block;
+      margin-top: 2px;
+      font-size: 14px;
+      color: var(--mu);
+    }
+
+    .fl {
+      display: flex;
+      gap: 26px;
+      margin-top: 26px;
+      font-size: 16px;
+    }
+
+    .fl a {
+      color: #8d8d8d;
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .fl a:hover {
+      color: #fff;
+    }
+
+    .cp {
+      margin-top: 28px;
+      font-size: 13px;
+      color: #515151;
+    }
+
+    .nav {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      bottom: 18px;
+      display: flex;
+      gap: 2px;
+      padding: 6px;
+      border: 1px solid #323232;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transform: translateX(-50%);
+      box-shadow: 0 20px 40px -18px #000;
+    }
+
+    .nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 82px;
+      height: 66px;
+      border-radius: 999px;
+      color: #8d8d8d;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .3s, color .3s;
+    }
+
+    .nav a svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .nav a.on {
+      background: var(--wh);
+      color: #000000;
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      place-items: center;
+      background: rgba(0, 0, 0, .94);
+      padding: 14px;
+    }
+
+    .lb.on {
+      display: grid;
+    }
+
+    .lb img {
+      max-width: 100%;
+      max-height: 92vh;
+      border-radius: 10px;
+      border: 1px solid var(--ln);
+    }
+
+    .ac {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tg {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #3d3d3d;
+      border-radius: 12px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tg svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .tg .mn,
+    html.light .tg .sn {
+      display: none;
+    }
+
+    html.light .tg .mn {
+      display: block;
+    }
+
+    html.light {
+      --ln: #dcdcdc;
+      --mu: #666666;
+      --wh: #000000;
+      --g1: #000000;
+      --g2: #555555;
+      background: #ffffff;
+    }
+
+    html.light body {
+      color: #0a0a0a;
+      background: radial-gradient(520px 420px at 50% 260px, rgba(0, 0, 0, .06), transparent 70%), #ffffff;
+    }
+
+    html.light .hd {
+      background: rgba(255, 255, 255, .9);
+    }
+
+    html.light .wbtn {
+      color: #ffffff;
+    }
+
+    html.light .obtn {
+      background: transparent;
+      border-color: #cccccc;
+      color: #0a0a0a;
+    }
+
+    html.light .obtn:hover {
+      border-color: #666666;
+    }
+
+    html.light .tg {
+      border-color: #cccccc;
+    }
+
+
+
+
+    html.light .ds {
+      color: #555555;
+    }
+
+    html.light .stats div {
+      background: rgba(0, 0, 0, .02);
+    }
+
+    html.light .eb {
+      color: #777777;
+    }
+
+    html.light .hw {
+      background: #f5f5f5;
+      border-color: #e2e2e2;
+    }
+
+    html.light .hw div+div {
+      border-top-color: #e2e2e2;
+    }
+
+    html.light .mono {
+      background: #f5f5f5;
+      color: #444444;
+    }
+
+    html.light .lbl {
+      color: #555555;
+    }
+
+    html.light .cl {
+      border-top-color: #e2e2e2;
+    }
+
+    html.light .cl p {
+      color: #555555;
+    }
+
+    html.light .dcard {
+      background: rgba(0, 0, 0, .03);
+    }
+
+    html.light .dcard .ic {
+      background: #f0f0f0;
+      border-color: #dddddd;
+      color: #000000;
+    }
+
+    html.light footer {
+      border-top-color: #e2e2e2;
+    }
+
+    html.light .fl a {
+      color: #555555;
+    }
+
+    html.light .fl a:hover {
+      color: #000000;
+    }
+
+    html.light .cp {
+      color: #888888;
+    }
+
+    @media (max-width: 400px) {
+      .br {
+        font-size: 16px;
+        gap: 8px;
+      }
+      .br img {
+        width: 28px;
+        height: 28px;
+      }
+      .hd .wbtn {
+        padding: 10px 12px;
+        font-size: 13.5px;
+      }
+      .tg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes bob {
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes pu {
+      50% {
+        transform: scale(1.15);
+        opacity: .6;
+      }
+    }
+
+    @keyframes sp {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes tw {
+      0%,
+      100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(.7) rotate(45deg);
+        opacity: .5;
+      }
+    }
+
+    @keyframes sw {
+      0%,
+      60% {
+        left: -60%;
+      }
+      100% {
+        left: 130%;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .br {
+        font-size: 16px;
+      }
+      .hd .wbtn {
+        padding: 10px 12px;
+        font-size: 13.5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .rv {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    body {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" style="stop-color:var(--g1)"/>
+        <stop offset="1" style="stop-color:var(--g2)"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <header class="hd">
+    <div class="w">
+      <div class="br">
+        <img src="/logo.png" alt="">
+        Blazewave
+      </div>
+      <div class="ac">
+        <button class="tg" id="th" type="button" aria-label="Toggle theme">
+          <svg class="sn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
+          <svg class="mn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        </button>
+        <a class="wbtn" href="https://discord.gg/jRUSVGBZwq">Join Discord</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="w">
+    <section id="home">
+      <div class="art">
+        <img class="lg" src="/logo.png" alt="Blazewave">
+      </div>
+
+      <svg class="ttl" width="100%" viewBox="0 0 320 128" role="img" aria-label="Blazewave">
+        <text x="0" y="56" font-size="62" textLength="320" lengthAdjust="spacingAndGlyphs">Blazewave</text>
+        <text x="0" y="120" font-size="62" textLength="320" lengthAdjust="spacingAndGlyphs">Studios</text>
+      </svg>
+      <div class="by">Protected script loader</div>
+      <p class="ds">Copy one line, paste it in your executor and the menu opens. Nothing else to set up.</p>
+
+      <div class="row">
+        <button class="wbtn pri" id="g" type="button">
+          <svg id="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="11" height="11" rx="2.5"/>
+            <path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/>
+          </svg>
+          <span id="t">Get Loader</span>
+        </button>
+        <a class="wbtn obtn" href="https://discord.gg/jRUSVGBZwq">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+          Discord
+        </a>
+      </div>
+
+      <div class="stats rv">
+        <div>
+          <span>Loader</span>
+          <svg class="num" width="104" height="30" viewBox="0 0 104 30" role="img" aria-label="1 Line"><text x="0" y="24" font-size="26" textLength="104" lengthAdjust="spacingAndGlyphs">1 Line</text></svg>
+        </div>
+        <div>
+          <span>Setup</span>
+          <svg class="num" width="120" height="30" viewBox="0 0 120 30" role="img" aria-label="3 Steps"><text x="0" y="24" font-size="26" textLength="120" lengthAdjust="spacingAndGlyphs">3 Steps</text></svg>
+        </div>
+        <div>
+          <span>Works in</span>
+          <svg class="num" width="112" height="30" viewBox="0 0 112 30" role="img" aria-label="Roblox"><text x="0" y="24" font-size="26" textLength="112" lengthAdjust="spacingAndGlyphs">Roblox</text></svg>
+        </div>
+        <div>
+          <span>Support</span>
+          <svg class="num" width="122" height="30" viewBox="0 0 122 30" role="img" aria-label="Discord"><text x="0" y="24" font-size="26" textLength="122" lengthAdjust="spacingAndGlyphs">Discord</text></svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="loader">
+      <div class="rv">
+        <div class="eb">LOADER</div>
+        <svg class="wd" width="280" height="40" viewBox="0 0 280 40" role="img" aria-label="How it works"><text x="0" y="32" font-size="30" textLength="280" lengthAdjust="spacingAndGlyphs">How it works</text></svg>
+      </div>
+      <div class="hw rv">
+        <div>
+          <svg class="num" style="margin:0;opacity:.5" width="40" height="22" viewBox="0 0 40 22" role="img" aria-label="01"><text x="0" y="17" font-size="17" textLength="40" lengthAdjust="spacingAndGlyphs">01</text></svg>
+          <b>Get the loader</b>
+          <small>Tap Get Loader at the top to copy the line.</small>
+        </div>
+        <div>
+          <svg class="num" style="margin:0;opacity:.5" width="40" height="22" viewBox="0 0 40 22" role="img" aria-label="02"><text x="0" y="17" font-size="17" textLength="40" lengthAdjust="spacingAndGlyphs">02</text></svg>
+          <b>Open your executor</b>
+          <small>Join the game and open your executor.</small>
+        </div>
+        <div>
+          <svg class="num" style="margin:0;opacity:.5" width="40" height="22" viewBox="0 0 40 22" role="img" aria-label="03"><text x="0" y="17" font-size="17" textLength="40" lengthAdjust="spacingAndGlyphs">03</text></svg>
+          <b>Paste and execute</b>
+          <small>Paste the line and run it. The menu opens.</small>
+        </div>
+      </div>
+
+      <div class="lbl rv">Loader line</div>
+      <div class="mono rv">loadstring(game:HttpGet("https://blazewave.pages.dev/mainloader"))()</div>
+
+      <div class="cl rv">
+        <svg class="wd" width="100%" viewBox="0 0 300 104" role="img" aria-label="One line. That's it." style="margin-top:0">
+          <text x="0" y="42" font-size="44" textLength="300" lengthAdjust="spacingAndGlyphs">One line.</text>
+          <text x="0" y="98" font-size="44" textLength="300" lengthAdjust="spacingAndGlyphs">That's it.</text>
+        </svg>
+        <p>Copy the loader, paste it in your executor, done. Join the server to follow updates as they drop.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="discord">
+      <div class="dcard rv">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+        </div>
+        <svg class="wd" style="margin:18px auto 0" width="190" height="40" viewBox="0 0 190 40" role="img" aria-label="Discord"><text x="0" y="32" font-size="32" textLength="190" lengthAdjust="spacingAndGlyphs">Discord</text></svg>
+        <p>Join the server for updates, help and news about new releases.</p>
+        <a class="wbtn" href="https://discord.gg/jRUSVGBZwq">Join Discord</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="fb">
+        <img src="/logo.png" alt="">
+        <div>
+          <b>Blazewave</b>
+          <small>Protected script loader</small>
+        </div>
+      </div>
+      <div class="fl">
+        <a href="#home">Home</a>
+        <a href="#loader">Loader</a>
+        <a href="#discord">Discord</a>
+      </div>
+      <div class="cp">&copy; 2026 Blazewave. All rights reserved.</div>
+    </footer>
+  </main>
+
+
+  <div class="lb" id="lb"><img id="lbi" alt=""></div>
+
+  <script>
+    try {
+      if (localStorage.getItem("zt") === "1") {
+        document.documentElement.classList.add("light");
+      }
+    } catch (e) {}
+
+    document.getElementById("th").onclick = function () {
+      var l = document.documentElement.classList.toggle("light");
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", l ? "#ffffff" : "#000000");
+      try {
+        localStorage.setItem("zt", l ? "1" : "0");
+      } catch (e) {}
+    };
+
+    var tx = 'loadstring(game:HttpGet("https://blazewave.pages.dev/mainloader"))()';
+    var g = document.getElementById("g");
+    var t = document.getElementById("t");
+    var i = document.getElementById("i");
+    var ic = i.innerHTML;
+
+    function done() {
+      t.textContent = "Copied";
+      i.innerHTML = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+      setTimeout(function () {
+        t.textContent = "Get Loader";
+        i.innerHTML = ic;
+      }, 1800);
+    }
+
+    function fb() {
+      var a = document.createElement("textarea");
+      a.value = tx;
+      a.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(a);
+      a.select();
+      try {
+        document.execCommand("copy");
+        done();
+      } catch (e) {}
+      document.body.removeChild(a);
+    }
+
+    g.onclick = function () {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(tx).then(done, fb);
+      } else {
+        fb();
+      }
+    };
+
+    var lb = document.getElementById("lb");
+    var lbi = document.getElementById("lbi");
+    var ims = document.querySelectorAll(".sl img");
+
+    for (var m = 0; m < ims.length; m++) {
+      ims[m].onclick = function () {
+        lbi.src = this.src;
+        lb.className = "lb on";
+      };
+    }
+
+    lb.onclick = function () {
+      lb.className = "lb";
+    };
+
+    var rv = document.querySelectorAll(".rv");
+
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      rv.forEach(function (x) {
+        io.observe(x);
+      });
+    } else {
+      rv.forEach(function (x) {
+        x.classList.add("in");
+      });
+    }
+
+    var secs = [
+      document.getElementById("home"),
+      document.getElementById("loader"),
+      document.getElementById("discord")
+    ];
+    var links = document.querySelectorAll("#nav a");
+
+    function mark(k) {
+      for (var j = 0; j < links.length; j++) {
+        links[j].className = j === k ? "on" : "";
+      }
+    }
+
+    function spy() {
+      var y = window.innerHeight * 0.4;
+      var best = 0;
+      for (var j = 0; j < secs.length; j++) {
+        if (secs[j].getBoundingClientRect().top <= y) {
+          best = j;
+        }
+      }
+      mark(best);
+    }
+
+    window.addEventListener("scroll", spy, { passive: true });
+    spy();
+  </script>
+  <script>
+    (function () {
+      var E = 'loadstring(game:HttpGet("https://blazewave.pages.dev/mainloader"))()';
+      var dead = false;
+
+      function bad() {
+        if (dead) return;
+        dead = true;
+        try {
+          document.documentElement.innerHTML = "";
+        } catch (e) {}
+        location.replace("/protected");
+      }
+
+      if (window.top !== window.self) {
+        bad();
+      }
+
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("selectstart", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        var k = (e.key || "").toLowerCase();
+        if (
+          e.key === "F12" ||
+          (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) ||
+          (e.ctrlKey && (k === "u" || k === "s" || k === "p")) ||
+          (e.metaKey && e.altKey && (k === "i" || k === "u" || k === "j"))
+        ) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, true);
+
+      var fine = window.matchMedia && matchMedia("(pointer:fine)").matches && screen.width >= 900;
+
+      setInterval(function () {
+        var a = performance.now();
+        debugger;
+        if (performance.now() - a > 150) {
+          bad();
+        }
+        if (fine && (outerWidth - innerWidth > 200 || outerHeight - innerHeight > 260)) {
+          bad();
+        }
+      }, 1500);
+
+      try {
+        var im = new Image();
+        Object.defineProperty(im, "id", {
+          get: function () {
+            bad();
+            return "";
+          }
+        });
+        console.debug(im);
+      } catch (e) {}
+
+      new MutationObserver(function (ms) {
+        ms.forEach(function (m) {
+          m.addedNodes.forEach(function (n) {
+            var t = n.tagName;
+            if (t === "IFRAME" || t === "OBJECT" || t === "EMBED" || (t === "SCRIPT" && !/cloudflareinsights\.com/.test(n.src || ""))) {
+              try {
+                n.remove();
+              } catch (e) {}
+              bad();
+            }
+          });
+        });
+      }).observe(document.documentElement, { childList: true, subtree: true });
+
+      setInterval(function () {
+        var m = document.querySelector(".mono") || document.querySelector(".code pre");
+        var b = document.getElementById("g") || document.querySelector(".code");
+        if (!m || !b || m.textContent.trim() !== E || (typeof window.tx === "string" && window.tx !== E) || typeof b.onclick !== "function") {
+          bad();
+        }
+      }, 2000);
+    })();
+  </script>
+</body>
+</html>
